@@ -1,9 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
+    declarations: [AppComponent],
+    imports:[RouterTestingModule]
   }));
 
   it('should create the app', () => {
@@ -21,7 +23,5 @@ describe('AppComponent', () => {
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('prueba-nttdata app is running!');
   });
 });

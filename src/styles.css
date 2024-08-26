@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(https://db.onlinewebfonts.com/c/4dc53271f9fd229b492be7460f491a33?family=Prelo+Slab+W04+Bold);
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1, h2, h3, label, input{
+    font-family: "Prelo Slab W04 Bold";
+
+}

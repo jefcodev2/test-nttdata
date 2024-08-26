@@ -1,0 +1,38 @@
+<form autocomplete="off" [formGroup]="productForm" class="form-grid">
+  <div class="form-group">
+    <label for="id">ID</label>
+    <input type="text" id="id" formControlName="id"  [ngClass]="{'error': validateValues('id')}">
+    <small *ngIf="validateValues('id')"> El ID invalido!</small>
+  </div>
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" formControlName="name"  [ngClass]="{'error': validateValues('name')}">
+    <small *ngIf="validateValues('name')">El nombre debe tener mínimo 6 caracteres y máximo 100!</small>
+  </div>
+  <div class="form-group">
+    <label for="descripcion">Descripción</label>
+    <input type="text" id="descripcion" formControlName="description"  [ngClass]="{'error': validateValues('description')}">
+    <small *ngIf="validateValues('description')">La descripción debe tener mínimo 10 caracteres y máximo 200!</small>
+    
+  </div>
+  <div class="form-group">
+    <label for="logo">Logo</label>
+    <input type="text" id="logo" formControlName="logo"  [ngClass]="{'error': validateValues('logo')}">
+    <small *ngIf="validateValues('logo')">El logo es obligatorio!</small>
+  </div>
+  <div class="form-group">
+    <label for="fecha-liberacion">Fecha Liberación</label>
+    <input type="date" id="fecha-liberacion" [min]="dateReleaseMin" formControlName="date_release" (change)="setDateRevision()">
+    <small *ngIf="validateValues('date_release')">La fecha de liberación es obligatoria!</small>
+
+  </div>
+  <div class="form-group">
+    <label for="fecha-revision">Fecha Revisión</label>
+    <input type="date" id="date_revision" formControlName="date_revision" readonly>
+  </div>
+  
+  <div class="button-group">
+    <button type="submit" class="reset-btn" (click)="clearForm()">Reiniciar</button>
+    <button type="submit" class="submit-btn" (click)="onSubmit()">Enviar</button>
+  </div>
+</form>

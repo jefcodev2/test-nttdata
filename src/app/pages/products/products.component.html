@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="search-container">
+    <input type="text" class="search-bar" placeholder="Search..." [(ngModel)]="searchTerm" (ngModelChange)="updateFilteredProducts()">
+    <button (click)="abrirModalCreate()" class="add-new">Agregar</button>
+  </div>
+
+  <table class="company-table">
+    <thead>
+      <tr>
+        <th>Logo</th>
+        <th>Nombre del producto</th>
+        <th>Descripción</th>
+        <th>Fecha de liberación</th>
+        <th>Fecha de reestructuración</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of displayedProducts">
+        <td>
+          <img [src]="product.logo" alt="Logo" class="circular-image" />
+      </td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ formatDate(product.date_release) }}</td>
+        <td>{{ formatDate(product.date_revision) }}</td>
+        <td>
+          <div class="dropdown">
+            <button class="dropdown-toggle">
+              <span class="vertical-dots-icon">⋮</span>
+            </button>
+            <div class="dropdown-menu">
+              <a (click)="abrirModalUpdate(product)" class="dropdown-item">Editar</a>
+              <a (click)="deleteProduct(product);" class="dropdown-item">Eliminar</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="results-container">
+    <div class="results-info">
+      <p>{{ resultsCount }} resultados</p>
+    </div>
+    <div class="pagination">
+      <select id="rows" (change)="onRowsChange($event)">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+  </div>
+  <!-- Modal Create-->
+  <div class="modal" *ngIf="!ocultarModalCrear">
+    <div class="modal-content">
+      <span class="close" (click)="cerrarModalCreate()">&times;</span>
+      <h1 style="text-align: center;">Formulario de Registro</h1>
+      <app-form-product (formClose)="handleFormClose()"></app-form-product>
+    </div>
+  </div>
+
+  <!-- Modal Update-->
+  <div class="modal" *ngIf="!ocultarModalUpdate">
+    <div class="modal-content">
+      <span class="close" (click)="cerrarModalUpdate()">&times;</span>
+      <h1 style="text-align: center;">Formulario de Edición</h1>
+      <app-form-product [product]="selectedProduct" (formClose)="handleFormClose()"></app-form-product>
+    </div>
+  </div>
+</div>
+
+
+
